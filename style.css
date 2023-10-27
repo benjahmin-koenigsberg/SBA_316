@@ -31,7 +31,7 @@ main {
 
 form {
     width: 32vw;
-    height: 70vh;
+    /* height: 70vh; */
     padding: 5vh;
     border: 1px solid black;
     display: flex;
@@ -40,8 +40,8 @@ form {
 
 }
 
-#name , #email , #message {
-    margin: 20px 0;
+#name , #email , #message , #subject {
+    margin: 10px 0;
 }
 
 #message {
@@ -51,20 +51,18 @@ form {
 
 #suggestions {
     width: 31vw;
-    height: 70vh;
+    /* height: 70vh; */
     padding: 5vh 0;
     border: 1px solid black;
 }
 
 #saved {
     width: 31vw;
-    height: 70vh;
+    /* height: 70vh; */
     border: 1px solid black;
     padding: 5vh 0;
 }
 
-
-form {}
 
 footer {
     border-top: 1px solid black;
