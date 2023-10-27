@@ -7,9 +7,7 @@ const subjectInput = document.getElementById('subject')
 const messageInput = document.getElementById('message')
 const submitBtn = document.getElementById('submitBtn')
 const saveBtn = document.querySelector('#saveBtn')
-
 const suggestionsSection = document.querySelector('#suggestions')
-
 const savedSection = document.querySelector('#saved')
 
 
@@ -35,19 +33,21 @@ subjectInput.addEventListener('blur', (e) => {
 })
 
 messageInput.addEventListener('blur', (e) => {
-
     gratitudeMessage = e.target.value;
 })
 
 
 submitBtn.addEventListener('click', (e) => {
     e.preventDefault()
-    // if (!recieptientEmail.includes(".+@email\.com")) {
-    //     window.alert('Please enter a valid email address')
-    //     return
-    // }
+    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
+
+    if (!recieptientEmail.match(emailRegex)) {
+        window.alert('Please enter a valid email address')
+        return
+    }
     if ( (!recieptientName) || (!subject) || (!gratitudeMessage) ) {
-        window.alert('Please fill in all forms')
+        window.alert('Please fill in all fields')
         return
         } else {
         mailTo()
@@ -103,14 +103,21 @@ suggestions.forEach((suggestion) => {
     //use first child method
     cardContainer.firstChild.classList.add('card-body')
     const subjectLine = document.createElement('h6')
-    subjectLine.classList.add("card-subtitle")
+    subjectLine.classList.add("card-subtitle", 'subject-text', 'text-center')
     subjectLine.innerText = suggestion.subject;
+
+    subjectLine.addEventListener('click', () => {
+        navigator.clipboard.writeText(subjectLine.innerText);
+    })
+
     const message = document.createElement('p')
     message.classList.add('card-text', 'message-text')
     message.innerText = suggestion.message
+
     message.addEventListener('click', () => {
-        navigator.clipboard.writeText(suggestion.message);
+    navigator.clipboard.writeText(message.innerText);
     })
+
     cardBody.append(subjectLine, message)
     suggestionsSection.append(cardContainer)
 
@@ -120,7 +127,3 @@ suggestions.forEach((suggestion) => {
 function mailTo() {
     window.location.href = `mailto:${recieptientEmail}?subject=${subject}&body=${gratitudeMessage}`;
 }
-
-// function copyToClipBoard(){
-//     navigator.clipboard.writeText(stringText);
-// }
