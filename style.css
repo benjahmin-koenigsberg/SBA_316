@@ -1,0 +1,72 @@
+html {
+
+    box-sizing: content-box;
+
+}
+
+body {
+    margin: auto;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self: center;
+}
+
+header {
+    text-align: center;
+    border-bottom: 1px solid black;
+    padding: 4vh;
+}
+
+main {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 5px;
+}
+
+
+
+form {
+    width: 32vw;
+    height: 70vh;
+    padding: 5vh;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+#name , #email , #message {
+    margin: 20px 0;
+}
+
+#message {
+    /* height: 250px; */
+    padding-bottom: 245px;
+}
+
+#suggestions {
+    width: 31vw;
+    height: 70vh;
+    padding: 5vh 0;
+    border: 1px solid black;
+}
+
+#saved {
+    width: 31vw;
+    height: 70vh;
+    border: 1px solid black;
+    padding: 5vh 0;
+}
+
+
+form {}
+
+footer {
+    border-top: 1px solid black;
+    padding: 4vh;
+}
