@@ -99,7 +99,9 @@ suggestions.forEach((suggestion) => {
     const cardContainer = document.createElement('div')
     cardContainer.classList.add('card')
     const cardBody = document.createElement('div')
-    cardBody.classList.add('card-body')
+    cardContainer.append(cardBody)
+    //use first child method
+    cardContainer.firstChild.classList.add('card-body')
     const subjectLine = document.createElement('h6')
     subjectLine.classList.add("card-subtitle")
     subjectLine.innerText = suggestion.subject;
@@ -107,7 +109,6 @@ suggestions.forEach((suggestion) => {
     message.classList.add('card-text')
     message.innerText = suggestion.message
     cardBody.append(subjectLine, message)
-    cardContainer.append(cardBody)
     suggestionsSection.append(cardContainer)
 
 })
