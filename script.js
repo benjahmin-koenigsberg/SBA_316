@@ -39,8 +39,8 @@ messageInput.addEventListener('blur', (e) => {
 
 submitBtn.addEventListener('click', (e) => {
     e.preventDefault()
-    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
+    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
     if (!recieptientEmail.match(emailRegex)) {
         window.alert('Please enter a valid email address')
@@ -51,44 +51,58 @@ submitBtn.addEventListener('click', (e) => {
         return
         } else {
         mailTo()
+        nameInput.value = '';
+        emailInput.value = '';
+        subjectInput.value = '';
+        messageInput.value = '';
         }
 })
 
 
+
+
+
 saveBtn.addEventListener('click', (e) => {
+
     e.preventDefault()
 
-    const obj = {
-        name: recieptientName,
-        subject: subject,
-        email: recieptientEmail,
-        message: gratitudeMessage
+    if ((!recieptientName) || (!recieptientEmail) || (!subject) || (!gratitudeMessage)) {
+        window.alert('Please fill in all fields')
+        return
     }
-    savedArray.push(obj)
 
+            const obj = {
+                name: recieptientName,
+                subject: subject,
+                email: recieptientEmail,
+                message: gratitudeMessage
+            }
+            savedArray.push(obj)
 
+            savedArray.forEach((entry) => {
 
-    savedArray.forEach((entry) => {
+                const cardContainer = document.createElement('div')
+                cardContainer.classList.add('card')
+                const cardBody = document.createElement('div')
+                cardBody.classList.add('card-body')
+                const nameField = document.createElement('h5')
+                nameField.innerText = entry.name
+                nameField.classList.add('card-title')
+                const subjectLine = document.createElement('h6')
+                subjectLine.classList.add("card-subtitle")
+                subjectLine.innerText = entry.subject
+                const message = document.createElement('p')
+                message.classList.add('card-text')
+                message.innerText = entry.message
+                cardBody.append(nameField, subjectLine, message)
+                cardContainer.append(cardBody)
+                savedSection.append(cardContainer)
+            })
+            nameInput.value = '';
+            emailInput.value = '';
+            subjectInput.value = '';
+            messageInput.value = '';
 
-        const cardContainer = document.createElement('div')
-        cardContainer.classList.add('card')
-        const cardBody = document.createElement('div')
-        cardBody.classList.add('card-body')
-        const nameField = document.createElement('h5')
-        nameField.innerText = entry.name
-        nameField.classList.add('card-title')
-        const subjectLine = document.createElement('h6')
-        subjectLine.classList.add("card-subtitle")
-        subjectLine.innerText = entry.subject
-        const message = document.createElement('p')
-        message.classList.add('card-text')
-        message.innerText = entry.message
-        cardBody.append(nameField, subjectLine, message)
-        cardContainer.append(cardBody)
-        savedSection.append(cardContainer)
-    })
-    const form = document.getElementsByName('form')
-    form.reset()
 
 })
 
