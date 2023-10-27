@@ -44,7 +44,7 @@ form {
 
 }
 
-#name , #email , #message , #subject {
+#name , #email , #message , #subject , button {
     margin: 10px 0;
 }
 

@@ -6,12 +6,20 @@ const emailInput = document.getElementById('email')
 const subjectInput = document.getElementById('subject')
 const messageInput = document.getElementById('message')
 const submitBtn = document.getElementById('submitBtn')
+const saveBtn = document.querySelector('#saveBtn')
+
+const suggestionsSection = document.querySelector('#suggestions')
+
+const savedSection = document.querySelector('#saved')
+
+
 
 let recieptientName;
 let recieptientEmail;
 let subject;
 let gratitudeMessage;
-let localStorageArray = [];
+let savedArray = [];
+
 
 
 
@@ -36,31 +44,57 @@ messageInput.addEventListener('change', (e) => {
 submitBtn.addEventListener('click', (e) => {
     e.preventDefault()
     // mailTo()
-    saveEmail()
-    addToSaved()
+
 
 })
+
+saveBtn.addEventListener('click', (e) => {
+    e.preventDefault()
+    savedArray.push({
+        name: recieptientName,
+        subject: subject,
+        email: recieptientEmail,
+        message: gratitudeMessage
+    })
+
+    savedArray.forEach((entry) => {
+
+        const cardContainer = document.createElement('div')
+        cardContainer.classList.add('card')
+        const cardBody = document.createElement('div')
+        cardBody.classList.add('card-body')
+        const nameField = document.createElement('h5')
+        nameField.innerText = entry.name
+        nameField.classList.add('card-title')
+        const subjectLine = document.createElement('h6')
+        subjectLine.classList.add("card-subtitle")
+        subjectLine.innerText = entry.subject
+        const message = document.createElement('p')
+        message.classList.add('card-text')
+        message.innerText = entry.message
+        cardBody.append(nameField, subjectLine, message)
+        cardContainer.append(cardBody)
+        savedSection.append(cardContainer)
+
+
+    })
+    console.log(savedArray)
+
+})
+
+
+
+
+
+function saveEmail() { }
+
+
 
 function mailTo() {
     window.location.href = `mailto:${recieptientEmail}?subject=${subject}&body=${gratitudeMessage}`;
 }
 
-function saveEmail() {
 
-    const obj = {
-        name: recieptientName,
-        subject: subject,
-        email: recieptientEmail,
-        message: gratitudeMessage
-    }
-
-    const newEntry = JSON.stringify(obj)
-    localStorage.setItem(
-        recieptientName,
-        newEntry
-    )
-    return
-}
 
 
 
@@ -81,7 +115,6 @@ function saveEmail() {
 
 
 
-const suggestionsSection = document.querySelector('#suggestions')
 
 suggestions.forEach((suggestion) => {
 
@@ -89,37 +122,14 @@ suggestions.forEach((suggestion) => {
     cardContainer.classList.add('card')
     const cardBody = document.createElement('div')
     cardBody.classList.add('card-body')
-
     const subjectLine = document.createElement('h6')
     subjectLine.classList.add("card-subtitle")
     subjectLine.innerText = suggestion.subject;
     const message = document.createElement('p')
     message.classList.add('card-text')
     message.innerText = suggestion.message
-    cardBody.append( subjectLine, message)
+    cardBody.append(subjectLine, message)
     cardContainer.append(cardBody)
     suggestionsSection.append(cardContainer)
 
 })
-
-
-
-function addToSaved(){
-
-    const savedSection = document.querySelector('#saved')
-    const cardContainer = document.createElement('div')
-    cardContainer.classList.add('card')
-    const cardBody = document.createElement('div')
-    cardBody.classList.add('card-body')
-    const nameField = document.createElement('h5')
-    nameField.innerText = recieptientName;
-    const subjectLine = document.createElement('h6')
-    subjectLine.classList.add("card-subtitle")
-    subjectLine.innerText = subject;
-    const message = document.createElement('p')
-    message.classList.add('card-text')
-    message.innerText = gratitudeMessage;
-    cardBody.append(nameField, subjectLine, message)
-    cardContainer.append(cardBody)
-    savedSection.append(cardContainer)
-}
