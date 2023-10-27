@@ -21,41 +21,52 @@ let gratitudeMessage;
 let savedArray = [];
 
 
-
-
-nameInput.addEventListener('change', (e) => {
+nameInput.addEventListener('blur', (e) => {
     recieptientName = e.target.value;
 
 })
 
-emailInput.addEventListener('change', (e) => {
+emailInput.addEventListener('blur', (e) => {
     recieptientEmail = e.target.value;
 })
 
-subjectInput.addEventListener('change', (e) => {
+subjectInput.addEventListener('blur', (e) => {
     subject = e.target.value
 })
 
-messageInput.addEventListener('change', (e) => {
+messageInput.addEventListener('blur', (e) => {
+
     gratitudeMessage = e.target.value;
 })
 
 
 submitBtn.addEventListener('click', (e) => {
     e.preventDefault()
-    // mailTo()
-
-
+    if (!recieptientEmail.includes(".+@email\.com")) {
+        window.alert('Please enter a valid email address')
+        return
+    }
+    if ( (!recieptientName) || (!subject) || (!gratitudeMessage) ) {
+        window.alert('Please fill in all forms')
+        return
+        } else {
+        mailTo()
+        }
 })
+
 
 saveBtn.addEventListener('click', (e) => {
     e.preventDefault()
-    savedArray.push({
+
+    const obj = {
         name: recieptientName,
         subject: subject,
         email: recieptientEmail,
         message: gratitudeMessage
-    })
+    }
+    savedArray.push(obj)
+
+
 
     savedArray.forEach((entry) => {
 
@@ -75,44 +86,11 @@ saveBtn.addEventListener('click', (e) => {
         cardBody.append(nameField, subjectLine, message)
         cardContainer.append(cardBody)
         savedSection.append(cardContainer)
-
-
     })
-    console.log(savedArray)
+    const form = document.getElementsByName('form')
+    form.reset()
 
 })
-
-
-
-
-
-function saveEmail() { }
-
-
-
-function mailTo() {
-    window.location.href = `mailto:${recieptientEmail}?subject=${subject}&body=${gratitudeMessage}`;
-}
-
-
-
-
-
-
-// function allStorage() {
-//     for (let i = 0; i < localStorage.length; i++) {
-//         let entry = localStorage.getItem(localStorage.key(i));
-//         localStorageArray.push(JSON.parse(entry))
-//     }
-// }
-
-
-
-// window.addEventListener('load', () => {
-//     allStorage()
-// })
-
-
 
 
 
@@ -133,3 +111,8 @@ suggestions.forEach((suggestion) => {
     suggestionsSection.append(cardContainer)
 
 })
+
+
+function mailTo() {
+    window.location.href = `mailto:${recieptientEmail}?subject=${subject}&body=${gratitudeMessage}`;
+}
