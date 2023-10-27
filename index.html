@@ -6,9 +6,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
-    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <script type="module" src="./script.js" defer></script>
+
     <title>SBA 316</title>
 </head>
 
@@ -17,13 +19,17 @@
         <h1>eGratidue App</h1>
     </header>
     <main>
-        <section id="suggestions">
+        <section >
+            <h5 class="text-center">Suggestions</h5>
+            <div id="suggestions">
 
+            </div>
         </section>
         <section id="form">
+            <h5 class="text-center">send eGratidue</h5>
             <form >
 
-                <!-- <input type="text" placeholder="Name" id="name" /> -->
+                <input type="text" placeholder="Name" id="name" />
 
                 <input type="email" placeholder="Email" id="email" required />
                 <input type="text" placeholder="Subject" id="subject" />
@@ -35,8 +41,11 @@
 
             </form>
         </section>
-        <section id="saved">
+        <section >
+            <h5 class="text-center">Saved</h5>
+<div id="saved">
 
+</div>
         </section>
     </main>
     <footer>
@@ -55,7 +64,6 @@
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script> -->
 
-    <script src="./script.js"></script>
 </body>
 
 </html>

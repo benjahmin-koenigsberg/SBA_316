@@ -17,7 +17,7 @@ body {
 header {
     text-align: center;
     border-bottom: 1px solid black;
-    padding: 4vh;
+    padding: 3vh;
 }
 
 main {
@@ -26,12 +26,16 @@ main {
     justify-content: space-around;
     padding: 5px;
 }
-
+@media (max-width:1001px) {
+    main{
+        flex-direction: column;
+    }
+}
 
 
 form {
     width: 32vw;
-    /* height: 70vh; */
+    height: 75vh;
     padding: 5vh;
     border: 1px solid black;
     display: flex;
@@ -51,14 +55,15 @@ form {
 
 #suggestions {
     width: 31vw;
-    /* height: 70vh; */
+    height: 75vh;
     padding: 5vh 0;
     border: 1px solid black;
+    overflow: scroll;
 }
 
 #saved {
     width: 31vw;
-    /* height: 70vh; */
+    height: 75vh;
     border: 1px solid black;
     padding: 5vh 0;
 }
@@ -66,5 +71,5 @@ form {
 
 footer {
     border-top: 1px solid black;
-    padding: 4vh;
+    padding: 3vh;
 }
