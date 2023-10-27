@@ -42,10 +42,10 @@ messageInput.addEventListener('blur', (e) => {
 
 submitBtn.addEventListener('click', (e) => {
     e.preventDefault()
-    if (!recieptientEmail.includes(".+@email\.com")) {
-        window.alert('Please enter a valid email address')
-        return
-    }
+    // if (!recieptientEmail.includes(".+@email\.com")) {
+    //     window.alert('Please enter a valid email address')
+    //     return
+    // }
     if ( (!recieptientName) || (!subject) || (!gratitudeMessage) ) {
         window.alert('Please fill in all forms')
         return
@@ -106,8 +106,11 @@ suggestions.forEach((suggestion) => {
     subjectLine.classList.add("card-subtitle")
     subjectLine.innerText = suggestion.subject;
     const message = document.createElement('p')
-    message.classList.add('card-text')
+    message.classList.add('card-text', 'message-text')
     message.innerText = suggestion.message
+    message.addEventListener('click', () => {
+        navigator.clipboard.writeText(suggestion.message);
+    })
     cardBody.append(subjectLine, message)
     suggestionsSection.append(cardContainer)
 
@@ -117,3 +120,7 @@ suggestions.forEach((suggestion) => {
 function mailTo() {
     window.location.href = `mailto:${recieptientEmail}?subject=${subject}&body=${gratitudeMessage}`;
 }
+
+// function copyToClipBoard(){
+//     navigator.clipboard.writeText(stringText);
+// }

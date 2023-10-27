@@ -53,12 +53,18 @@ form {
     padding-bottom: 245px;
 }
 
+
+
 #suggestions {
     width: 31vw;
     height: 75vh;
     padding: 5vh 0;
     border: 1px solid black;
     overflow: scroll;
+}
+
+.message-text:hover{
+    background-color: lightgray;
 }
 
 #saved {
