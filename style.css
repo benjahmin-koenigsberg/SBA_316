@@ -39,8 +39,13 @@ main {
 
 }
 
+#suggestion-sections{
+    order: 1;
+}
 
-
+#form-section{
+order: 2;
+}
 
 form {
     width: 32vw;
@@ -51,6 +56,7 @@ form {
     flex-direction: column;
     justify-content: center;
     background-color: #f17fad;
+
 
 }
 
@@ -76,6 +82,7 @@ button {
     overflow: scroll;
     background-color: #f17fad;
     margin-bottom: 2vh;
+    order: 1;
 }
 
 .subjectDiv {
@@ -125,16 +132,19 @@ button {
     overflow: scroll;
     background-color: #f17fad;
     /* margin-bottom: 15px; */
+
 }
 
 #saved-section{
     display: flex;
     flex-direction: column;
+    order: 3;
 }
 
 .fa-trash {
     color: red;
     align-self: center;
+
 }
 
 footer {
@@ -161,6 +171,16 @@ header {
 
     main {
         flex-direction: column;
+        display: flex;
+    }
+
+    #form-section {
+        order: 1;
+    }
+
+    #suggestion-section {
+        order: 2;
+        margin: 10px 0;
     }
 
     #suggestions,
