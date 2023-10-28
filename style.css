@@ -144,6 +144,21 @@ footer {
 
 
 @media (max-width:1001px) {
+
+header {
+        background-position: center left;
+        background-position: 5% 30%;
+        background-repeat: no-repeat;
+        background-size: 65%;
+        padding: 0 5vw;
+    }
+
+    h1{
+        font-size: 2rem;
+        text-align: right;
+        margin: 25px 0;
+    }
+
     main {
         flex-direction: column;
     }
