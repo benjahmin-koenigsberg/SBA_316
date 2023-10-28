@@ -74,7 +74,6 @@ submitBtn.addEventListener('click', (e) => {
 
     e.preventDefault()
     if (!emailInput.value.match(emailRegex)) {
-    // if (emailRegex.test(emailInput.value)) {
         window.alert('Please enter a valid email address')
         return
     }
@@ -105,7 +104,6 @@ saveBtn.addEventListener('click', (e) => {
 
     if (!emailInput.value.match(emailRegex)) {
 
-    // if (emailRegex.test(emailInput.value)) {
         window.alert('Please enter a valid email address')
         return
     }
@@ -122,6 +120,9 @@ saveBtn.addEventListener('click', (e) => {
         cardContainer.classList.add('card')
         const cardBody = document.createElement('div')
         cardBody.classList.add('card-body')
+        const dateField = document.createElement('h5')
+        dateField.classList.add('card-title', 'date')
+        dateField.innerText = new Date().toDateString()
         const nameField = document.createElement('h5')
         nameField.innerText = nameInput.value
         nameField.classList.add('card-title')
@@ -131,7 +132,7 @@ saveBtn.addEventListener('click', (e) => {
         const message = document.createElement('p')
         message.classList.add('card-text')
         message.innerText = messageInput.value
-        cardBody.append(nameField, subjectLine, message)
+        cardBody.append(dateField, nameField, subjectLine, message)
         cardContainer.append(cardBody)
         savedSection.append(cardContainer)
     }
@@ -145,6 +146,7 @@ saveBtn.addEventListener('click', (e) => {
 
 function saveItem(){
 
+
     if ( (savedSection.innerText === 'No Messages Currently Saved')  )
     delete savedSection.innerText
 
@@ -155,7 +157,7 @@ function saveItem(){
         email: emailInput.value,
         message: messageInput.value
     }
-
+    console.log(item)
     localStorage.setItem(nameInput.value, JSON.stringify(item))
 
 }
@@ -178,8 +180,8 @@ function clearItems(){
 
 
 window.addEventListener('load', ()=>{
+
     getStorage()
-   // getSavedItems()
 
     savedArray.forEach((entry) => {
 
@@ -187,7 +189,9 @@ window.addEventListener('load', ()=>{
         cardContainer.classList.add('card')
         const cardBody = document.createElement('div')
         cardBody.classList.add('card-body')
+        //const dateField = document.querySelector('.date')
         const dateField = document.createElement('h5')
+        dateField.classList.add('card-text')
         dateField.innerText = entry.date;
         const nameField = document.createElement('h5')
         nameField.innerText = entry.name
@@ -204,27 +208,3 @@ window.addEventListener('load', ()=>{
     })
 
 })
-
-// function getSavedItems(){
-
-//     savedArray.forEach((entry) => {
-
-//         const cardContainer = document.createElement('div')
-//         cardContainer.classList.add('card')
-//         const cardBody = document.createElement('div')
-//         cardBody.classList.add('card-body')
-//         const nameField = document.createElement('h5')
-//         nameField.innerText = entry.name
-//         nameField.classList.add('card-title')
-//         const subjectLine = document.createElement('h6')
-//         subjectLine.classList.add("card-subtitle")
-//         subjectLine.innerText = entry.subject
-//         const message = document.createElement('p')
-//         message.classList.add('card-text')
-//         message.innerText = entry.message
-//         cardBody.append(nameField, subjectLine, message)
-//         cardContainer.append(cardBody)
-//         savedSection.append(cardContainer)
-//     })
-
-// }
