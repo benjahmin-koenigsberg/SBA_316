@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Love+Ya+Like+A+Sister&family=Quattrocento&display=swap');
+
 html {
 
     box-sizing: content-box;
@@ -13,12 +15,19 @@ body {
     justify-content: center;
     align-self: center;
     background-color: #fce3ec;
+    font-family: 'Quattrocento', serif;
+    font-family: 'Love Ya Like A Sister', cursive;
 }
 
 header {
     text-align: center;
     border-bottom: 1px solid black;
     padding: 3vh;
+    background-image: url("https://www.misskatecuttables.com/uploads/shopping_cart/8621/large_graditude-title.png");
+    background-position: center left;
+    background-position: 20% 38%;
+    background-repeat: no-repeat;
+    background-size:20%;
 }
 
 main {
@@ -55,17 +64,18 @@ button {
 }
 
 #message {
-    /* height: 250px; */
-    padding-bottom: 200px;
+    height: 275px;
+    /* padding-bottom: 200px; */
 }
 
 
 #suggestions {
     width: 31vw;
-    height: 75vh;
+    height: 74vh;
     border: 1px solid black;
     overflow: scroll;
     background-color: #f17fad;
+    margin-bottom: 2vh;
 }
 
 .subjectDiv {
@@ -83,17 +93,19 @@ button {
     align-items: center;
     justify-content: space-around;
     padding: 5px;
+    line-height: 30px;
 
 }
 
-i {
+
+.fa-arrow-right {
     margin-left: auto;
     margin-top: auto;
 }
 
-i:hover {
-    transform: scale(1.2);
-    color: blue;
+
+.fa-arrow-right:hover {
+   transform: scale(1.5);
 }
 
 /* p {
@@ -102,18 +114,28 @@ i:hover {
 
 .card {
     padding: 5px;
-    margin: 5px;
+    margin: 10px;
     box-shadow: -3px 5px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
 #saved {
     width: 31vw;
-    height: 75vh;
+    height: 67vh;
     border: 1px solid black;
     overflow: scroll;
     background-color: #f17fad;
+    /* margin-bottom: 15px; */
 }
 
+#saved-section{
+    display: flex;
+    flex-direction: column;
+}
+
+.fa-trash {
+    color: red;
+    align-self: center;
+}
 
 footer {
     border-top: 1px solid black;

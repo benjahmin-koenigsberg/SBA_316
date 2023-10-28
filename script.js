@@ -10,11 +10,11 @@ const submitBtn = document.getElementById('submitBtn')
 const saveBtn = document.querySelector('#saveBtn')
 const suggestionsSection = document.querySelector('#suggestions')
 const savedSection = document.querySelector('#saved')
+const clearBtn = document.getElementById('clearBtn')
 
 const savedArray = [];
 
-const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
+const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
 suggestions.forEach((suggestion) => {
 
@@ -27,7 +27,7 @@ suggestions.forEach((suggestion) => {
     const subjectDiv = document.createElement('div')
     subjectDiv.classList.add('subjectDiv')
     const copyIcon = document.createElement('i')
-    copyIcon.classList.add("fa-clipboard", "fa")
+    copyIcon.classList.add("fa-arrow-right", "fa", )
     const subjectLine = document.createElement('h6')
 
     subjectDiv.append(subjectLine, copyIcon)
@@ -38,7 +38,7 @@ suggestions.forEach((suggestion) => {
 
     const messageDiv = document.createElement('div')
     const copyIcon2 = document.createElement('i')
-    copyIcon2.classList.add("fa-clipboard", "fa")
+    copyIcon2.classList.add("fa-arrow-right", "fa",)
     messageDiv.classList.add('messageDiv')
     const message = document.createElement('p')
 
@@ -71,10 +71,10 @@ function mailTo() {
 
 
 submitBtn.addEventListener('click', (e) => {
+
     e.preventDefault()
-
-
     if (!emailInput.value.match(emailRegex)) {
+    // if (emailRegex.test(emailInput.value)) {
         window.alert('Please enter a valid email address')
         return
     }
@@ -82,6 +82,7 @@ submitBtn.addEventListener('click', (e) => {
     if ((!nameInput.value) || (!emailInput.value) || (!subjectInput.value) || (!messageInput.value)) {
         window.alert('Please fill in all fields')
         return
+
     }
      else {
         mailTo()
@@ -90,6 +91,7 @@ submitBtn.addEventListener('click', (e) => {
         subjectInput.value = '';
         messageInput.value = '';
     }
+    return
 })
 
 
@@ -100,9 +102,10 @@ saveBtn.addEventListener('click', (e) => {
 
     e.preventDefault()
 
-    saveItem()
 
     if (!emailInput.value.match(emailRegex)) {
+
+    // if (emailRegex.test(emailInput.value)) {
         window.alert('Please enter a valid email address')
         return
     }
@@ -111,37 +114,38 @@ saveBtn.addEventListener('click', (e) => {
         window.alert('Please fill in all fields')
         return
     }
+    else {
 
-    const cardContainer = document.createElement('div')
-    cardContainer.classList.add('card')
-    const cardBody = document.createElement('div')
-    cardBody.classList.add('card-body')
-    const nameField = document.createElement('h5')
-    nameField.innerText = nameInput.value
-    nameField.classList.add('card-title')
-    const subjectLine = document.createElement('h6')
-    subjectLine.innerText = subjectInput.value
-    subjectLine.classList.add("card-subtitle")
-    const message = document.createElement('p')
-    message.classList.add('card-text')
-    message.innerText = messageInput.value
-    cardBody.append(nameField, subjectLine, message)
-    cardContainer.append(cardBody)
-    savedSection.append(cardContainer)
+        saveItem()
+
+        const cardContainer = document.createElement('div')
+        cardContainer.classList.add('card')
+        const cardBody = document.createElement('div')
+        cardBody.classList.add('card-body')
+        const nameField = document.createElement('h5')
+        nameField.innerText = nameInput.value
+        nameField.classList.add('card-title')
+        const subjectLine = document.createElement('h6')
+        subjectLine.innerText = subjectInput.value
+        subjectLine.classList.add("card-subtitle")
+        const message = document.createElement('p')
+        message.classList.add('card-text')
+        message.innerText = messageInput.value
+        cardBody.append(nameField, subjectLine, message)
+        cardContainer.append(cardBody)
+        savedSection.append(cardContainer)
+    }
 
 })
-    // const obj = {
-    //     name: nameInput.value,
-    //     subject: subjectInput.value,
-    //     email: emailInput.value,
-    //     message: messageInput.value
-    // }
-    // savedArray.push(obj)
 
 
+ clearBtn.addEventListener('click', clearItems)
 
 
 function saveItem(){
+
+    if ( (savedSection.innerText === 'No Messages Currently Saved')  )
+    delete savedSection.innerText
 
     const item = {
         name: nameInput.value,
@@ -157,21 +161,23 @@ function saveItem(){
 
 
 function getStorage(){
-    //let storageArray = [];
 
     for (let i = 0; i <= localStorage.length; i++) {
         let item = localStorage.getItem(localStorage.key(i));
         if ( item !== "INFO" && item !== null && item !== undefined)
             savedArray.push(JSON.parse(item));
     }
+}
 
-
+function clearItems(){
+    localStorage.clear();
+    location.reload();
 }
 
 
 window.addEventListener('load', ()=>{
     getStorage()
-
+   // getSavedItems()
 
     savedArray.forEach((entry) => {
 
@@ -193,7 +199,28 @@ window.addEventListener('load', ()=>{
         savedSection.append(cardContainer)
     })
 
-    console.log(savedArray)
-
-
 })
+
+// function getSavedItems(){
+
+//     savedArray.forEach((entry) => {
+
+//         const cardContainer = document.createElement('div')
+//         cardContainer.classList.add('card')
+//         const cardBody = document.createElement('div')
+//         cardBody.classList.add('card-body')
+//         const nameField = document.createElement('h5')
+//         nameField.innerText = entry.name
+//         nameField.classList.add('card-title')
+//         const subjectLine = document.createElement('h6')
+//         subjectLine.classList.add("card-subtitle")
+//         subjectLine.innerText = entry.subject
+//         const message = document.createElement('p')
+//         message.classList.add('card-text')
+//         message.innerText = entry.message
+//         cardBody.append(nameField, subjectLine, message)
+//         cardContainer.append(cardBody)
+//         savedSection.append(cardContainer)
+//     })
+
+// }
