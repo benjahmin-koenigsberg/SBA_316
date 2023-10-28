@@ -142,12 +142,14 @@ saveBtn.addEventListener('click', (e) => {
  clearBtn.addEventListener('click', clearItems)
 
 
+
 function saveItem(){
 
     if ( (savedSection.innerText === 'No Messages Currently Saved')  )
     delete savedSection.innerText
 
     const item = {
+        date: new Date().toDateString(),
         name: nameInput.value,
         subject: subjectInput.value,
         email: emailInput.value,
@@ -185,6 +187,8 @@ window.addEventListener('load', ()=>{
         cardContainer.classList.add('card')
         const cardBody = document.createElement('div')
         cardBody.classList.add('card-body')
+        const dateField = document.createElement('h5')
+        dateField.innerText = entry.date;
         const nameField = document.createElement('h5')
         nameField.innerText = entry.name
         nameField.classList.add('card-title')
@@ -194,7 +198,7 @@ window.addEventListener('load', ()=>{
         const message = document.createElement('p')
         message.classList.add('card-text')
         message.innerText = entry.message
-        cardBody.append(nameField, subjectLine, message)
+        cardBody.append(dateField, nameField, subjectLine, message)
         cardContainer.append(cardBody)
         savedSection.append(cardContainer)
     })
