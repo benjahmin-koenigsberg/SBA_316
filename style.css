@@ -7,11 +7,12 @@ html {
 body {
     margin: auto;
     width: 100vw;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-self: center;
+    background-color: #fce3ec;
 }
 
 header {
@@ -25,12 +26,11 @@ main {
     align-items: center;
     justify-content: space-around;
     padding: 5px;
+    background-color: #fce3ec;
+
 }
-@media (max-width:1001px) {
-    main{
-        flex-direction: column;
-    }
-}
+
+
 
 
 form {
@@ -41,46 +41,95 @@ form {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background-color: #f17fad;
 
 }
 
-#name , #email , #message , #subject , button {
+#name,
+#email,
+#message,
+#subject,
+#sendersName,
+button {
     margin: 10px 0;
 }
 
 #message {
     /* height: 250px; */
-    padding-bottom: 245px;
+    padding-bottom: 200px;
 }
-
 
 
 #suggestions {
     width: 31vw;
     height: 75vh;
-    padding: 5vh 0;
     border: 1px solid black;
     overflow: scroll;
+    background-color: #f17fad;
 }
 
-.subject-text:hover{
-    background-color: lightgray;
+.subjectDiv {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 5px;
+
+
+
 }
 
-.message-text:hover{
-    background-color: rgba(211, 211, 211, 0.95);
+.messageDiv {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 5px;
+
+}
+
+i {
+    margin-left: auto;
+    margin-top: auto;
+}
+
+i:hover {
+    transform: scale(1.2);
+    color: blue;
+}
+
+/* p {
+    margin: 5px;
+} */
+
+.card {
+    padding: 5px;
+    margin: 5px;
+    box-shadow: -3px 5px 5px 0px rgba(0, 0, 0, 0.75);
 }
 
 #saved {
     width: 31vw;
     height: 75vh;
     border: 1px solid black;
-    padding: 5vh 0;
     overflow: scroll;
+    background-color: #f17fad;
 }
 
 
 footer {
     border-top: 1px solid black;
     padding: 3vh;
+}
+
+
+@media (max-width:1001px) {
+    main {
+        flex-direction: column;
+    }
+
+    #suggestions,
+    form,
+    #saved {
+        width: 90vw;
+        overflow: scroll;
+    }
 }
